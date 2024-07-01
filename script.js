@@ -22,6 +22,7 @@ function init() {
 const button = document.getElementById("guess-button");
 button.addEventListener("click", intentar);
 
+
 function intentar() {
     const INTENTO = leerIntento();
     const letras = /^[a-zA-Z]+$/;
@@ -70,6 +71,11 @@ function intentar() {
 }
 
 const input = document.getElementById("guess-input");
+input.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter' || event.code === 13) {
+        intentar();
+    }
+})
 
 function leerIntento() {
     let intento = input.value;
@@ -83,6 +89,8 @@ function terminar(mensaje) {
     button.disabled = true;
     let contenedor = document.getElementById('guesses');
     contenedor.innerHTML = mensaje;
+    const GRID = document.getElementById("grid");
+    GRID.innerHTML = '';
 }
 
 function notificacion(mensaje){
